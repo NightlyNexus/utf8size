@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>UTF-8 Size</title>
+  <style>body{max-width: 16em;top: 15%;right: 50%;transform: translateX(50%);position: absolute;font-size: 1.3em;}</style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/default.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+</head>
+<body>
+<textarea autofocus id="string" rows="4" style="width: 20em;font-size: 1em;">Measure UTF-8 text here
+🚂</textarea>
+<p>UTF-8 size (byte count): <b id="size"></b></p>
+<details open>
+  <summary>UTF-8 bytes (hex):</summary>
+  <pre id="bytes" style="display: inline; white-space: pre-wrap;"></pre>
+</details>
+<p>Code point count: <b id="code_point_count"></b></p>
+<details open>
+  <summary>Code points (hex):</summary>
+  <pre id="code_points" style="display: inline; white-space: pre-wrap;"></pre>
+</details>
+<br/>
+<p style="font-size: 0.9em;">How to iterate through a UTF-8 string in</p>
+<script src="utf8size.js"></script>
+</body>
+</html>
