@@ -1,4 +1,5 @@
 import kotlinx.browser.document
+import kotlinx.browser.window
 import kotlinx.dom.addClass
 import kotlinx.dom.appendElement
 import okio.Buffer
@@ -6,6 +7,7 @@ import org.w3c.dom.Element
 import org.w3c.dom.HTMLTextAreaElement
 import org.w3c.dom.events.Event
 import org.w3c.dom.events.EventListener
+import org.w3c.dom.url.URLSearchParams
 
 fun main() {
   val stringInput = document.getElementById("string") as HTMLTextAreaElement
@@ -13,7 +15,6 @@ fun main() {
   val bytesResult = document.getElementById("bytes")!!
   val codePointCountResult = document.getElementById("code_point_count")!!
   val codePointsResult = document.getElementById("code_points")!!
-  stringInput.selectionEnd = stringInput.value.length
   for (language in languages) {
     document.body!!.appendElement("details") {
       appendElement("summary") {
@@ -30,8 +31,7 @@ fun main() {
     }
   }
 
-  fun update() {
-    val string = stringInput.value
+  fun update(string: String) {
     val bytes = Buffer().writeUtf8(string)
     val codePoints = string.codePoints()
 
@@ -41,11 +41,24 @@ fun main() {
     codePointsResult.setCodePointsResult(codePoints)
   }
 
-  update()
+  val q = URLSearchParams(window.location.search).get("q")
+  if (q != null) {
+    stringInput.value = q
+  }
+  stringInput.setSelectionRange(0, stringInput.value.length)
+  update(stringInput.value)
 
   stringInput.addEventListener("input", object : EventListener {
     override fun handleEvent(event: Event) {
-      update()
+      val input = stringInput.value
+      update(input)
+      val newUrl =
+        window.location.origin + window.location.pathname + "?q=" + encodeURIComponent(input)
+      window.history.replaceState(null, "", newUrl)
+    }
+
+    private fun encodeURIComponent(input: String): String {
+      return js("encodeURIComponent(input)") as String
     }
   })
 }
