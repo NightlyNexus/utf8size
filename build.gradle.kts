@@ -1,5 +1,5 @@
 plugins {
-  kotlin("js") version "1.8.0"
+  kotlin("js") version "2.0.0"
 }
 
 group = "com.nightlynexus"
@@ -10,8 +10,8 @@ repositories {
 }
 
 dependencies {
-  implementation("com.squareup.okio:okio-nodefilesystem:3.2.0")
-  implementation("com.squareup.okio:okio:3.2.0")
+  implementation("com.squareup.okio:okio-nodefilesystem:3.9.0")
+  implementation("com.squareup.okio:okio:3.9.0")
   testImplementation(kotlin("test"))
 }
 
