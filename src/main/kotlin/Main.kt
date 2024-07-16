@@ -77,7 +77,7 @@ private fun Element.setBytesResult(bytes: Buffer) {
         .append(' ')
     }
     bytesBuilder
-      .append(byte.toString(16))
+      .append(byte.toString(16).uppercase().padStart(2, '0'))
     i++
   }
   textContent = bytesBuilder.toString()
@@ -96,7 +96,7 @@ private fun Element.setCodePointsResult(codePoints: List<Int>) {
         .append(' ')
     }
     codePointsBuilder
-      .append(codePoint.toString(16))
+      .append(codePoint.toString(16).uppercase().padStart(5, '0'))
   }
   textContent = codePointsBuilder.toString()
 }
@@ -104,7 +104,7 @@ private fun Element.setCodePointsResult(codePoints: List<Int>) {
 private fun String.codePoints(): List<Int> {
   val codePoints = mutableListOf<Int>()
   var i = 0
-  while (i < length) {
+  while (i != length) {
     val codePoint = codePointAt(i)
     codePoints += codePoint
     i += codePoint.charCount()

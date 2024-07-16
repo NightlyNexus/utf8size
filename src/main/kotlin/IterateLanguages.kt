@@ -4,7 +4,7 @@ internal val languages = listOf(
     "JavaScript",
     // language=javascript
     """
-    for (var i = 0; i < str.length; ) {
+    for (var i = 0; i != str.length; ) {
       var codePoint = str.codePointAt(i);
       // Process the code point.
       i += codePoint >= 0x010000 ? 2 : 1;
