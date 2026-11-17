@@ -18,7 +18,6 @@ kotlin {
   sourceSets {
     val jsMain = getByName("jsMain") {
       dependencies {
-        implementation("com.squareup.okio:okio-nodefilesystem:3.18.2")
         implementation("com.squareup.okio:okio:3.18.2")
       }
     }
