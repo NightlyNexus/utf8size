@@ -36,7 +36,7 @@ fun main() {
     val codePoints = string.codePoints()
 
     sizeResult.setSizeResult(bytes.size)
-    bytesResult.setBytesResult(bytes)
+    bytesResult.setBytesResultAndConsume(bytes)
     codePointCountResult.setCodePointCountResult(codePoints.size)
     codePointsResult.setCodePointsResult(codePoints)
   }
@@ -67,18 +67,19 @@ private fun Element.setSizeResult(size: Long) {
   textContent = size.toString()
 }
 
-private fun Element.setBytesResult(bytes: Buffer) {
+private fun Element.setBytesResultAndConsume(bytes: Buffer) {
   val bytesBuilder = StringBuilder()
-  var i = 0L
-  while (i != bytes.size) {
-    val byte = bytes[i].toUnsignedInt()
-    if (i != 0L) {
+  var firstByte = true
+  while (!bytes.exhausted()) {
+    if (firstByte) {
+      firstByte = false
+    } else {
       bytesBuilder
         .append(' ')
     }
+    val byte = bytes.readByte().toUnsignedInt()
     bytesBuilder
       .append(byte.toString(16).uppercase().padStart(2, '0'))
-    i++
   }
   textContent = bytesBuilder.toString()
 }
