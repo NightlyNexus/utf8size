@@ -31,6 +31,8 @@ fun main() {
     }
   }
 
+  js("hljs.highlightAll()")
+
   fun update(string: String) {
     val bytes = Buffer().writeUtf8(string)
     val codePoints = string.codePoints()
