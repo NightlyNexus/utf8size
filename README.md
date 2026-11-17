@@ -1,6 +1,6 @@
 https://nightlynexus.github.io/utf8size/
 
-Contribute more UTF-8 string iteration language implementations at [IterateLanguages.kt](src/main/kotlin/IterateLanguages.kt)
+Contribute more UTF-8 string iteration language implementations at [IterateLanguages.kt](src/jsMain/kotlin/IterateLanguages.kt)
 
 License
 --------
